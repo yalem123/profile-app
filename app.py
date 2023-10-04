@@ -1,4 +1,4 @@
-
+# Store this code in 'app.py' file
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
@@ -13,8 +13,8 @@ app.secret_key = 'your secret key'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'newpassword'
-app.config['MYSQL_DB'] = 'profile'
+app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_DB'] = 'geekprofile'
 
 
 mysql = MySQL(app)
@@ -26,10 +26,10 @@ def login():
 	msg = ''
 	if request.method == 'POST' and 'username' in
 	request.form and 'password' in request.form:
-	username = request.form['username']
-	password = request.form['password']
-	cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-	cursor.execute(
+		username = request.form['username']
+		password = request.form['password']
+		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+		cursor.execute(
 			'SELECT * FROM accounts WHERE username = % s \
 			AND password = % s', (username, password, ))
 		account = cursor.fetchone()
@@ -160,4 +160,3 @@ def update():
 
 if __name__ == "__main__":
 	app.run(host="localhost", port=int("5000"))
-
